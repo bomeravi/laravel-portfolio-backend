@@ -39,7 +39,7 @@ jobs:
             php artisan view:cache || true
 
             # Install and build frontend assets
-            npm ci || npm install || exit 1
-            npm run build || exit 1
+            # npm ci || npm install || exit 1
+            # npm run build || exit 1
 
             echo "Production deployment completed successfully!"

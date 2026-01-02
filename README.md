@@ -1,3 +1,6 @@
+> [!CAUTION]
+> Currently hosting in Cpanel so, npm is disabled on production.yml for github workflows
+
 # Saroj Personal Website
 
 A modern personal portfolio website built with Laravel 12, featuring a comprehensive admin panel for managing blogs, projects, skills, experiences, and contact messages.
