@@ -28,7 +28,7 @@ jobs:
             git pull origin master || exit 1
 
             # Install dependencies
-            composer install --no-interaction --prefer-dist --optimize-autoloader || exit 1
+            composer install  --no-dev --no-interaction --prefer-dist --optimize-autoloader || exit 1
 
             # Run Laravel-specific commands
             php artisan migrate --force || exit 1
