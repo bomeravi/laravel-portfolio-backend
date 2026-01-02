@@ -1,0 +1,11 @@
+{
+    "fields": [
+        {"name": "title", "type": "text"},
+        {"name": "category", "type": "text"},
+        {"name": "image", "type": "file"},
+        {"name": "description", "type": "textarea"},
+        {"name": "tags", "type": "text"},
+        {"name": "status", "type": "select"},
+        {"name": "featured_homepage", "type": "select"}
+    ]
+}

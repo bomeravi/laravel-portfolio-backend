@@ -1,0 +1,13 @@
+{
+    "fields": [
+        {"name": "title", "type": "text"},
+        {"name": "description", "type": "textarea"},
+        {"name": "image", "type": "file"},
+        {"name": "tags", "type": "text"},
+        {"name": "live_url", "type": "url"},
+        {"name": "github_url", "type": "url"},
+        {"name": "status", "type": "select"},
+        {"name": "list_order", "type": "number"},
+        {"name": "featured_homepage", "type": "select"}
+    ]
+}

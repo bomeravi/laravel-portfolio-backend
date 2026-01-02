@@ -1,0 +1,7 @@
+{
+    "fields": [
+        {"name": "name", "type": "text"},
+        {"name": "slug", "type": "text"},
+        {"name": "description", "type": "textarea"}
+    ]
+}

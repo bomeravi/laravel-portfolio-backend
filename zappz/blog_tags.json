@@ -1,0 +1,6 @@
+{
+    "fields": [
+        {"name": "blog_id", "type": "number"},
+        {"name": "tag_id", "type": "number"}
+    ]
+}

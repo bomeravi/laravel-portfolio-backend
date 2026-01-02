@@ -1,0 +1,46 @@
+name: Deploy Laravel to VPS
+
+on:
+  push:
+    branches:
+      - staging
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Deploy via SSH with key
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_KEY }}
+          port: 22
+          script_stop: true
+          timeout: 120s
+          script: |
+            cd ${{ vars.STAGING_PATH }} || exit 1
+
+            echo "Deploying to staging environment..."
+            git fetch origin staging || exit 1
+            git checkout staging || exit 1
+            git pull origin staging || exit 1
+
+
+            composer install --no-interaction --prefer-dist --optimize-autoloader || exit 1
+            php artisan migrate --force || exit 1
+
+            php artisan config:clear || true
+            php artisan cache:clear || true
+            php artisan config:cache || true
+            php artisan route:cache || true
+            php artisan view:cache || true
+
+            npm ci || npm install || exit 1
+            npm run build || exit 1
+
+            echo "Staging deployment completed successfully!"

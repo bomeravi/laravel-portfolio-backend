@@ -1,0 +1,45 @@
+name: Deploy to Production
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy-to-prod:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Deploy to production
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_KEY }}
+          port: 22
+          script_stop: true
+          timeout: 120s
+          script: |
+            cd ${{ vars.PRODUCTION_PATH }} || exit 1
+            echo "Deploying to production environment..."
+            git fetch origin master || exit 1
+            git checkout master || exit 1
+            git pull origin master || exit 1
+
+            # Install dependencies
+            composer install --no-interaction --prefer-dist --optimize-autoloader || exit 1
+
+            # Run Laravel-specific commands
+            php artisan migrate --force || exit 1
+            php artisan config:clear || true
+            php artisan cache:clear || true
+            php artisan config:cache || true
+            php artisan route:cache || true
+            php artisan view:cache || true
+
+            # Install and build frontend assets
+            npm ci || npm install || exit 1
+            npm run build || exit 1
+
+            echo "Production deployment completed successfully!"

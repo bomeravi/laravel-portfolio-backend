@@ -1,0 +1,9 @@
+{
+    "fields": [
+        {"name": "name", "type": "text"},
+        {"name": "level", "type": "number"},
+        {"name": "tags", "type": "text"},
+        {"name": "list_order", "type": "number"},
+        {"name": "status", "type": "select"}
+    ]
+}

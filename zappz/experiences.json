@@ -1,0 +1,13 @@
+{
+    "fields": [
+        {"name": "title", "type": "text"},
+        {"name": "company", "type": "text"},
+        {"name": "start_date", "type": "date"},
+        {"name": "end_date", "type": "date"},
+        {"name": "current", "type": "select"},
+        {"name": "description", "type": "textarea"},
+        {"name": "achievements", "type": "textarea"},
+        {"name": "display_month", "type": "select"},
+        {"name": "status", "type": "select"}
+    ]
+}

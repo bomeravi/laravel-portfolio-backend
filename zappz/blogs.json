@@ -1,0 +1,16 @@
+{
+    "fields": [
+        {"name": "title", "type": "text"},
+        {"name": "slug", "type": "text"},
+        {"name": "excerpt", "type": "textarea"},
+        {"name": "content", "type": "textarea"},
+        {"name": "featured_image", "type": "file"},
+        {"name": "reading_time", "type": "number"},
+        {"name": "published_at", "type": "datetime-local"},
+        {"name": "is_published", "type": "select"},
+        {"name": "user_id", "type": "number"},
+        {"name": "category_id", "type": "number"},
+        {"name": "featured_homepage", "type": "select"},
+        {"name": "status", "type": "select"}
+    ]
+}
