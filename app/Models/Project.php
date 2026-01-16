@@ -18,7 +18,6 @@ class Project extends Model
         'github_url',
         'status',
         'list_order',
-        'status',
         'featured_homepage',
     ];
 

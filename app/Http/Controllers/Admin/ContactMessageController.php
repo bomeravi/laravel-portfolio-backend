@@ -14,7 +14,6 @@ class ContactMessageController extends Controller
         $keyword = $request->get('search');
         $perPage = 25;
         $query = ContactMessage::latest();
-        dd(Auth::user()->email);
         if(Auth::user()->is_demo){
             $query->where('email', Auth::user()->email)->where('id', '<', 10);
         }

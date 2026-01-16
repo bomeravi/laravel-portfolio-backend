@@ -100,6 +100,38 @@
                         </script>
                         @endpush
 
+                        <div class="mb-4">
+                            <label for="tags" class="block text-gray-700 text-sm font-bold mb-2">Tags (comma-separated): </label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="tags" type="text" id="tags" value="{{ old('tags', is_array($project->tags) ? implode(', ', $project->tags) : $project->tags) }}" placeholder="Laravel, Vue, React">
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="live_url" class="block text-gray-700 text-sm font-bold mb-2">Live URL: </label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="live_url" type="url" id="live_url" value="{{ old('live_url', $project->live_url) }}" placeholder="https://example.com">
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="github_url" class="block text-gray-700 text-sm font-bold mb-2">GitHub URL: </label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="github_url" type="url" id="github_url" value="{{ old('github_url', $project->github_url) }}" placeholder="https://github.com/username/repo">
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="list_order" class="block text-gray-700 text-sm font-bold mb-2">List Order: </label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="list_order" type="number" id="list_order" value="{{ old('list_order', $project->list_order ?? 0) }}" min="0">
+                        </div>
+
+                        <div class="mb-4 flex items-center gap-6">
+                            <div class="flex items-center">
+                                <input type="checkbox" name="status" id="status" value="1" {{ old('status', $project->status) ? 'checked' : '' }} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                <label for="status" class="ml-2 text-gray-700 text-sm font-bold">Active</label>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <input type="checkbox" name="featured_homepage" id="featured_homepage" value="1" {{ old('featured_homepage', $project->featured_homepage) ? 'checked' : '' }} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                <label for="featured_homepage" class="ml-2 text-gray-700 text-sm font-bold">Featured on Homepage</label>
+                            </div>
+                        </div>
+
                         <div class="flex items-center justify-between">
                             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
                                 Update

@@ -17,7 +17,7 @@ class CustomCors
         'https://saroj.name.np',
         // Add more domains as needed
         // 'https://example.com',
-        // 'http://localhost:3000',
+        'http://localhost:3000',
     ];
 
     /**

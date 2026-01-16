@@ -35,6 +35,10 @@ class ProjectController extends Controller
             'title' => 'required|string|max:255',
             'image_file' => 'nullable|image|max:2048',
             'image_url' => 'nullable|url',
+            'tags' => 'nullable|string',
+            'live_url' => 'nullable|url',
+            'github_url' => 'nullable|url',
+            'list_order' => 'nullable|integer',
         ]);
 
         $data = $request->except(['image_file', 'image_url']);
@@ -45,6 +49,15 @@ class ProjectController extends Controller
         } elseif ($request->filled('image_url')) {
             $data['image'] = $request->image_url;
         }
+
+        // Convert comma-separated tags to array
+        if ($request->filled('tags')) {
+            $data['tags'] = array_map('trim', explode(',', $request->tags));
+        }
+
+        // Handle checkbox fields
+        $data['status'] = $request->has('status') ? 1 : 0;
+        $data['featured_homepage'] = $request->has('featured_homepage') ? 1 : 0;
 
         Project::create($data);
 
@@ -69,6 +82,10 @@ class ProjectController extends Controller
             'title' => 'required|string|max:255',
             'image_file' => 'nullable|image|max:2048',
             'image_url' => 'nullable|url',
+            'tags' => 'nullable|string',
+            'live_url' => 'nullable|url',
+            'github_url' => 'nullable|url',
+            'list_order' => 'nullable|integer',
         ]);
 
         $project = Project::findOrFail($id);
@@ -85,6 +102,15 @@ class ProjectController extends Controller
         } elseif ($request->filled('image_url')) {
             $data['image'] = $request->image_url;
         }
+
+        // Convert comma-separated tags to array
+        if ($request->filled('tags')) {
+            $data['tags'] = array_map('trim', explode(',', $request->tags));
+        }
+
+        // Handle checkbox fields
+        // $data['status'] = $request->has('status') ? 1 : 0;
+        // $data['featured_homepage'] = $request->has('featured_homepage') ? 1 : 0;
 
         $project->update($data);
 
